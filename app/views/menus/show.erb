@@ -1,23 +1,28 @@
 <div class="center">
     <h1><%= @menu.name %></h1>
 
-    <div>
-        <table border="1">
-            <tr>
-                <th>Protein[g]</th>
-                <th>Fat[g]</th>
-                <th>Carbohydrates[g]</th>
-                <th>calorie[Kcal]</th>
-            </tr>
-            <tr>
-                <td><%= @menu.protein %></td>
-                <td><%= @menu.fat %></td>
-                <td><%= @menu.carbohydrates %></td>
-                <td><%= @menu.calorie %></td>
-            </tr>
-        </table>
+    <div class="row">
+        <aside class="col-sm-4">
+            <%= image_tag @menu.img.url if @menu.img? %>
+        </aside>
+        <div class="col-sm-8">
+            <table border="1">
+                <tr>
+                    <th>Protein[g]</th>
+                    <th>Fat[g]</th>
+                    <th>Carbohydrates[g]</th>
+                    <th>calorie[Kcal]</th>
+                </tr>
+                <tr>
+                    <td><%= @menu.protein %></td>
+                    <td><%= @menu.fat %></td>
+                    <td><%= @menu.carbohydrates %></td>
+                    <td><%= @menu.calorie %></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
-<%= link_to '戻る', user_path(current_user) %>
 <%= link_to 'Menuを編集する', edit_menu_path %>
 <%= link_to 'Menuを削除する', @menu, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+<%= link_to '戻る', user_path(current_user) %>

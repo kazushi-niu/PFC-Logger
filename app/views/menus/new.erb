@@ -1,19 +1,22 @@
 <h1>Menu投稿</h1>
 <%= form_with(model: @menu, local:true) do |f| %>
-<%= f.label :name, 'menu' %>
-<%= f.text_field :name %>
-
-<%= f.label :protein, 'protein' %>
-<%= f.number_field :protein, step: "0.1" %>
-
-<%= f.label :fat, 'fat' %>
-<%= f.number_field :fat, step: "0.1" %>
-
-<%= f.label :carbohydrates, 'carbohydrates' %>
-<%= f.number_field :carbohydrates, step: "0.1" %>
-
+<%= f.label :name, 'menu:' %>
+<%= f.text_field :name %><span>[g]</span>
+<br>
+<%= f.label :protein, 'protein:' %>
+<%= f.number_field :protein, step: "0.1" %><span>[g]</span>
+<br>
+<%= f.label :fat, 'fat:' %>
+<%= f.number_field :fat, step: "0.1" %><span>[g]</span>
+<br>
+<%= f.label :carbohydrates, 'carbohydrates:' %>
+<%= f.number_field :carbohydrates, step: "0.1" %><span>[g]</span>
+<br>
+<%= f.label :Image, 'Image:' %>
+<%= f.file_field :img, class: "image" %>
+<br>
 <%= f.submit '投稿' %>
 
 <% end %>
 
-<%= link_to '戻る', user_path(current_user) %>
+<br><%= link_to '戻る', user_path(current_user), class: 'btn btn-primary' %>

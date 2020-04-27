@@ -1,7 +1,6 @@
-<h1>Menuの編集</h1>
 <%= form_with(model: @menu, local:true) do |f| %>
 <%= f.label :name, 'menu:' %>
-<%= f.text_field :name %>
+<%= f.text_field :name %><span>[g]</span>
 <br>
 <%= f.label :protein, 'protein:' %>
 <%= f.number_field :protein, step: "0.1" %><span>[g]</span>
@@ -14,9 +13,8 @@
 <br>
 <%= f.label :Image, 'Image:' %>
 <%= f.file_field :img, class: "image" %>
-<p><%= f.check_box :remove_img %>画像を削除する</p>
 <br>
-<%= f.submit '更新' %>
+<%= f.submit '投稿' %>
 
 <% end %>
 

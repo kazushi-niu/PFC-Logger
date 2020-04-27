@@ -1,25 +1,29 @@
 <ul class="list-unstyled">
     <% menus.each do |menu| %>
-    <div class="media-body">
-        <div><%= link_to menu.name, menu_path(menu.id) %></div>
-        <div>
-            <%= link_to menu.user.name, user_path(menu.user) %><span class="text-muted">posted at <%= menu.created_at %></span>
+    <div class="media-body card">
+        <div class="border-bottom">
+            <%= link_to menu.name, menu_path(menu.id), class: "font-weight-bold" %><span class="text-muted"> by</span>
+            <%= link_to menu.user.name, user_path(menu.user), class: "text-muted" %><span class="text-muted"> posted at <%= menu.created_at %></span>
+        </div>
+        <div class="row">
+        <div class="col"><%= image_tag menu.img.url, size: '250x250' if menu.img? %></div>
+        <div class="col">
+            <table border="1">
+                <tr>
+                    <th>Protein[g]</th>
+                    <th>Fat[g]</th>
+                    <th>Carbohydrates[g]</th>
+                    <th>calorie[Kcal]</th>
+                </tr>
+                <tr>
+                    <td><%= menu.protein %></td>
+                    <td><%= menu.fat %></td>
+                    <td><%= menu.carbohydrates %></td>
+                    <td><%= menu.calorie %></td>
+                </tr>
+            </table>
         </div>
         </div>
-        <table border="1">
-            <tr>
-                <th>Protein[g]</th>
-                <th>Fat[g]</th>
-                <th>Carbohydrates[g]</th>
-                <th>calorie[Kcal]</th>
-            </tr>
-            <tr>
-                <td><%= menu.protein %></td>
-                <td><%= menu.fat %></td>
-                <td><%= menu.carbohydrates %></td>
-                <td><%= menu.calorie %></td>
-            </tr>
-        </table>
     </div>
     <% end %>
 </ul>

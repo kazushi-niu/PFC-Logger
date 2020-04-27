@@ -49,7 +49,7 @@ class MenusController < ApplicationController
   private
   
   def menu_params
-    params.require(:menu).permit(:name, :protein, :fat, :carbohydrates)
+    params.require(:menu).permit(:name, :protein, :fat, :carbohydrates, :title, :text, :img, :remove_img)
   end
   
   def corrent_user
@@ -58,4 +58,5 @@ class MenusController < ApplicationController
       redirect_to root_url
     end
   end
+
 end
