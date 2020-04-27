@@ -1,16 +1,23 @@
 <% if logged_in? %>
 
-  <p>ログイン完了ユーザ: 
-<%= current_user.name %>
-</p>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <div class="center jumbotron">
+    <div class='text-center'>
+      <h1>新しいメニューを投稿する</h1>
+      <%= link_to '投稿', new_menu_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+  
 <% else %>
 
   <div class="center jumbotron">
     <div class="text-center">
       <h1>Welcome to the PFC-logger</h1>
-      
-<%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
-
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>
 <% end %>
+
+<div>
+  <%= render 'menus/menus', menus: @menus %>
+</div>

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @menus = @user.menus.order(id: :desc).page(params[:page])
   end
 
   def new
