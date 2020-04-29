@@ -13,4 +13,5 @@ class Menu < ApplicationRecord
     self.calorie = protein.to_i * 4 + fat.to_i * 9 + carbohydrates.to_i * 4
   end
   
+  has_many :comments
 end

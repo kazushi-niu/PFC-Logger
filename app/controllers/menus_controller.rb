@@ -4,6 +4,8 @@ class MenusController < ApplicationController
   
   def show
     @menu = Menu.find(params[:id])
+    @comments = @menu.comments.includes(:user).all
+    @comment = @menu.comments.build(user_id: current_user.id) if current_user
   end
   
   def new

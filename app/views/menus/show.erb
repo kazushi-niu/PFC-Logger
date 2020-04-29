@@ -25,4 +25,22 @@
 </div>
 <%= link_to 'Menuを編集する', edit_menu_path %>
 <%= link_to 'Menuを削除する', @menu, method: :delete, data: { confirm: '本当に削除しますか?' } %>
-<%= link_to '戻る', user_path(current_user) %>
+
+
+<div class="border-top">
+    <p>コメント一覧</p>
+    <% @comments.each do |comment| %>
+        <div>
+            <%= comment.user.name %><br>
+            <%= comment.content %>
+        </div>
+    <% end %>
+    <% if logged_in? %>
+        <%= form_with(model: [@menu, @comment], local: true) do |f| %>
+            <%= f.text_area :content, class: "form-control", row: 5 %>
+            <%= f.submit 'コメント' %>
+        <% end %>
+    <% end %>
+</div>
+
+<%= link_to '戻る', root_path %>

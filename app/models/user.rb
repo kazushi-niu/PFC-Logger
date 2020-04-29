@@ -6,4 +6,7 @@ class User < ApplicationRecord
   
   #menuとの関連付け
   has_many :menus
+  
+  #comenntとの関連付け
+  has_many :comments
 end
