@@ -1,32 +1,40 @@
-<div class="center">
+<div class="container">
     <h1><%= @menu.name %></h1>
-
+    
     <div class="row">
-        <aside class="col-sm-4">
+        <aside class="col-sm-6">
             <%= image_tag @menu.img.url if @menu.img? %>
         </aside>
-        <div class="col-sm-8">
-            <table border="1">
+        <div class="col-sm-6">
+            <p>PFC</p>
+            <table class="table table-responsive">
+                <tbody>
                 <tr>
-                    <th>Protein[g]</th>
-                    <th>Fat[g]</th>
-                    <th>Carbohydrates[g]</th>
-                    <th>calorie[Kcal]</th>
+                    <th>Protein</th>
+                    <td class="text-right"><%= @menu.protein %>g</td>
                 </tr>
                 <tr>
-                    <td><%= @menu.protein %></td>
-                    <td><%= @menu.fat %></td>
-                    <td><%= @menu.carbohydrates %></td>
-                    <td><%= @menu.calorie %></td>
+                    <th>Fat</th>
+                    <td class="text-right"><%= @menu.fat %>g</td>
                 </tr>
+                <tr>
+                    <th>Carbohydrates</th>
+                    <td class="text-right"><%= @menu.carbohydrates %>g</td>
+                </tr>
+                <tr>
+                    <th>calorie</th>
+                    <td class="text-right"><%= @menu.calorie %>Kcal</td>
+                </tr>
+                </tbody>
             </table>
+            <%= link_to '編集', edit_menu_path %>
+            <%= link_to '削除', @menu, method: :delete, data: { confirm: '本当に削除しますか?' } %>
         </div>
     </div>
 </div>
-<%= link_to 'Menuを編集する', edit_menu_path %>
-<%= link_to 'Menuを削除する', @menu, method: :delete, data: { confirm: '本当に削除しますか?' } %>
 
 
+<div class="container">
 <div class="border-top">
     <p>コメント一覧</p>
     <% @comments.each do |comment| %>
@@ -41,6 +49,7 @@
             <%= f.submit 'コメント' %>
         <% end %>
     <% end %>
+</div>
 </div>
 
 <%= link_to '戻る', root_path %>

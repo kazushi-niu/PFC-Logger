@@ -8,14 +8,16 @@
         <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
-    <div class='center'>
+    <div class='center-block'>
       <%= link_to 'メニュー投稿', new_menu_path, class: 'btn btn-lg btn-primary' %>
+      <%= render 'relationships/follow_button', user: @user %>
     </div>
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
       <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">menu <span class="badge badge-secondary"><%= @count_menus %></span></a></li>
-      <li class="nav-item"><a href="#" class="nav-link">comment</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Followings</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Followers</a></li>
     </ul>
     <%= render 'menus/menus', menus: @menus %>
   </div>
