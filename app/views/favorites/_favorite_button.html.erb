@@ -1,0 +1,13 @@
+<% if menu.favorite?(current_user) %>
+  <!-- お気に入り解除ボタン(フォローしていない場合) -->
+  <%= form_with(model: current_user.favorites.find_by(menu_id: menu.id), local: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :menu_id, menu.id %>
+    <%= f.submit 'Unfavorite', class: 'btn btn-danger btn-sm' %>
+  <% end %>
+<% else %>
+  <!-- お気に入り登録ボタン(フォローしている場合) -->
+  <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+    <%= hidden_field_tag :menu_id, menu.id %>
+    <%= f.submit 'Favorite', class: 'btn btn-primary btn-sm' %>
+  <% end %>
+<% end %>

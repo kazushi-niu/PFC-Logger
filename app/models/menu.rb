@@ -14,4 +14,20 @@ class Menu < ApplicationRecord
   end
   
   has_many :comments
+  has_many :favorites, dependent: :destroy
+  has_many :users, through: :favorites
+  
+  def favorite(user)
+    self.favorites.find_or_create_by(user_id: user.id)
+  end
+  
+  def unfavorite(user)
+    favorite = self.favorites.find_by(user_id: user.id)
+    favorite.destroy if favorite
+  end
+  
+  def favorite?(user)
+    self.favorites.exists? user_id: user.id
+  end
+  
 end

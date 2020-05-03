@@ -7,10 +7,14 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :followers
+      get :likes
     end
   end
   
   resources :relationships, only: [:create, :destroy]
+  
+  #favorite
+  resources :favorites, only: [:create, :destroy]
   
   #login
   get 'login', to: 'sessions#new'
