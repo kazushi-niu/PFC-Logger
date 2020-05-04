@@ -22,7 +22,9 @@
                     <td><%= menu.calorie %></td>
                 </tr>
             </table>
-        <%= render 'favorites/favorite_button', menu: menu %>
+            <% if logged_in? %>
+                <%= render 'favorites/favorite_button', menu: menu %>
+            <% end %>
         </div>
         </div>
     </div>

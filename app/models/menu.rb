@@ -13,7 +13,10 @@ class Menu < ApplicationRecord
     self.calorie = protein.to_i * 4 + fat.to_i * 9 + carbohydrates.to_i * 4
   end
   
+  #コメント機能
   has_many :comments
+  
+  #お気に入り機能
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
   
@@ -28,6 +31,15 @@ class Menu < ApplicationRecord
   
   def favorite?(user)
     self.favorites.exists? user_id: user.id
+  end
+  
+  #検索機能
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
   end
   
 end

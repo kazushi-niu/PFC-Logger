@@ -1,5 +1,5 @@
 class ToppagesController < ApplicationController
   def index
-    @menus = Menu.all
+    @menus = Menu.search(params[:search]).page(params[:page])
   end
 end
