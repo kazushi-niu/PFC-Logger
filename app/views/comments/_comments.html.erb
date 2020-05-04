@@ -1,0 +1,13 @@
+<div class="container">
+<div class="border-top">
+    <p>コメント一覧</p>
+    <% comments.each do |comment| %>
+        <div　class="card" style="width: 18rem;">
+            <div class="card-header">
+                <%= link_to comment.user.name, user_path(comment.user), class: "text-muted" %><span class="text-muted"> posted at <%= comment.created_at %></span>
+            </div>
+            <div class="card-body"><%= comment.content %></div>
+        </div>
+    <% end %>
+</div>
+</div>

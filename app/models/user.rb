@@ -35,4 +35,13 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favposts, through: :favorites, source: :menu
   
+  #検索機能
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
+  
 end

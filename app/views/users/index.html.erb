@@ -1,2 +1,18 @@
-<p>User一覧</p>
-<%= render 'users', users: @users %>
+<div class="text-center">
+    <h1>User一覧</h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+    <%= form_tag(users_path, :method => 'get') do %>
+        <div class="input-group">
+            <%= text_field_tag :search, '', placeholder: "ユーザ検索", class: "form-control" %>
+            <span class="input-group-btn"><%= submit_tag '検索', :name => nil, class: "btn btn-primary" %></span>
+        </div>
+    <% end %>
+    </div>
+</div>
+
+<ul class = "users">
+    <%= render 'users', users: @users %>
+</ul>

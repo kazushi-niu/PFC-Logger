@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
   end
   
+  #follow
   resources :relationships, only: [:create, :destroy]
   
   #favorite

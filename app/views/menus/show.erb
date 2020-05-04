@@ -1,3 +1,4 @@
+<div class="wrapper">
 <div class="container">
     <h1><%= @menu.name %></h1>
     
@@ -27,29 +28,24 @@
                 </tr>
                 </tbody>
             </table>
-            <%= link_to '編集', edit_menu_path %>
-            <%= link_to '削除', @menu, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+            <% if @menu.user == current_user %>
+                <%= link_to '編集', edit_menu_path, class: "btn btn-info" %>
+                <%= link_to '削除', @menu, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-danger" %>
+            <% else %>
+                <%= render "favorites/favorite_button", menu: @menu %>
+            <% end %>
         </div>
     </div>
 </div>
 
+<%= render "comments/comments", comments: @comments %>
+<% if logged_in? %>
+    <%= form_with(model: [@menu, @comment], local: true) do |f| %>
+        <%= f.text_area :content, class: "form-control", row: 5 %>
+        <%= f.submit 'コメント' %>
+    <% end %>
+<% end %>
 
-<div class="container">
-<div class="border-top">
-    <p>コメント一覧</p>
-    <% @comments.each do |comment| %>
-        <div>
-            <%= comment.user.name %><br>
-            <%= comment.content %>
-        </div>
-    <% end %>
-    <% if logged_in? %>
-        <%= form_with(model: [@menu, @comment], local: true) do |f| %>
-            <%= f.text_area :content, class: "form-control", row: 5 %>
-            <%= f.submit 'コメント' %>
-        <% end %>
-    <% end %>
-</div>
 </div>
 
 <%= link_to '戻る', root_path %>
